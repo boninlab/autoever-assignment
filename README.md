@@ -129,10 +129,6 @@ curl -X GET http://localhost:8080/api/users/me \
 ### 4. 관리자 - 회원 목록 조회 (페이징)
 
 ```bash
-curl -X GET "http://localhost:8080/admin/users?page=0&size=10"
-```
-
-```bash
 curl --location 'http://localhost:8080/admin/users?page=0&size=5' \
   --header 'Authorization: Basic YWRtaW46MTIxMg=='
 ```
