@@ -31,5 +31,5 @@ class User(
     val phone: String,
 
     @Column(nullable = false)
-    val address: String
+    var address: String
 )
