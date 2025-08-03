@@ -96,7 +96,7 @@ curl -X POST http://localhost:8080/api/users \
     "account": "tester1",
     "password": "secure123",
     "name": "홍길동",
-    "rrn": "9901011234567",
+    "rrn": "9601011234567",
     "phone": "01011112222",
     "address": "서울특별시 강남구"
   }'
@@ -132,6 +132,11 @@ curl -X GET http://localhost:8080/api/users/me \
 curl -X GET "http://localhost:8080/admin/users?page=0&size=10"
 ```
 
+```bash
+curl --location 'http://localhost:8080/admin/users?page=0&size=5' \
+  --header 'Authorization: Basic YWRtaW46MTIxMg=='
+```
+
 ---
 
 ### 5. 관리자 - 회원 정보 수정
@@ -141,7 +146,8 @@ curl -X PATCH http://localhost:8080/admin/users/1 \
   -H "Content-Type: application/json" \
   -d '{
     "address": "부산광역시 해운대구"
-  }'
+  }' \
+  --header 'Authorization: Basic YWRtaW46MTIxMg=='
 ```
 
 ---
@@ -149,7 +155,8 @@ curl -X PATCH http://localhost:8080/admin/users/1 \
 ### 6. 관리자 - 회원 삭제
 
 ```bash
-curl -X DELETE http://localhost:8080/admin/users/1
+curl -X DELETE http://localhost:8080/admin/users/1 \
+  --header 'Authorization: Basic YWRtaW46MTIxMg=='
 ```
 
 ---
@@ -166,7 +173,8 @@ curl -X POST http://localhost:8080/admin/messages/send \
     "40": "40대를 위한 세단 무이자 행사!",
     "50": "50대를 위한 중고차 보상 프로모션!",
     "60": "60대를 위한 안락한 차량 추천!"
-  }'
+  }' \
+  --header 'Authorization: Basic YWRtaW46MTIxMg=='
 ```
 
 ---
