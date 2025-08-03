@@ -1,5 +1,6 @@
 package com.autoever.assignment.api.user
 
+import com.autoever.assignment.dto.user.LoginRequest
 import com.autoever.assignment.dto.user.UserSignUpRequest
 import com.autoever.assignment.service.user.UserService
 import jakarta.validation.Valid
@@ -16,5 +17,14 @@ class UserController(
     fun signUp(@RequestBody @Valid request: UserSignUpRequest): ResponseEntity<Long> {
         val userId = userService.signUp(request)
         return ResponseEntity.ok(userId)
+    }
+
+    @PostMapping("/login")
+    fun login(@RequestBody @Valid request: LoginRequest): ResponseEntity<String> {
+        return if (userService.login(request.account, request.password)) {
+            ResponseEntity.ok("Login successful")
+        } else {
+            ResponseEntity.status(401).body("Invalid credentials")
+        }
     }
 }

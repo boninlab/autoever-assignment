@@ -59,4 +59,12 @@ class UserService(
         }
         userRepository.deleteById(id)
     }
+
+    @Transactional(readOnly = true)
+    fun login(account: String, password: String): Boolean {
+        val user = userRepository.findAll().find { it.account == account }
+            ?: return false
+        return user.password == password
+    }
+
 }
