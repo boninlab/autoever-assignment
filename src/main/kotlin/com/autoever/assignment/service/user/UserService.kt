@@ -2,6 +2,7 @@ package com.autoever.assignment.service.user
 
 import com.autoever.assignment.domain.user.User
 import com.autoever.assignment.domain.user.UserRepository
+import com.autoever.assignment.dto.user.UserResponse
 import com.autoever.assignment.dto.user.UserSignUpRequest
 import com.autoever.assignment.dto.user.UserUpdateRequest
 import org.springframework.data.domain.Page
@@ -65,6 +66,19 @@ class UserService(
         val user = userRepository.findAll().find { it.account == account }
             ?: return false
         return user.password == password
+    }
+
+    @Transactional(readOnly = true)
+    fun getUserByAccount(account: String): UserResponse {
+        val user = userRepository.findAll().find { it.account == account }
+            ?: throw IllegalArgumentException("존재하지 않는 사용자입니다.")
+        return UserResponse(
+            account = user.account,
+            name = user.name,
+            rrn = user.rrn,
+            phone = user.phone,
+            region = UserResponse.extractRegion(user.address)
+        )
     }
 
 }

@@ -1,6 +1,7 @@
 package com.autoever.assignment.api.user
 
 import com.autoever.assignment.dto.user.LoginRequest
+import com.autoever.assignment.dto.user.UserResponse
 import com.autoever.assignment.dto.user.UserSignUpRequest
 import com.autoever.assignment.service.user.UserService
 import jakarta.validation.Valid
@@ -27,4 +28,11 @@ class UserController(
             ResponseEntity.status(401).body("Invalid credentials")
         }
     }
+
+    @GetMapping("/me")
+    fun getMyInfo(@RequestHeader("X-Account") account: String): ResponseEntity<UserResponse> {
+        val user = userService.getUserByAccount(account)
+        return ResponseEntity.ok(user)
+    }
+
 }
