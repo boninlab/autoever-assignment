@@ -34,10 +34,10 @@ TPS 제한 기반 비동기 알림 처리 시스템을 구현한 프로젝트입
 ### 2. Redis + Spring Boot 동시 실행
 
 ```bash
-# Redis 실행 (Docker)
+# Redis(redis:7) 실행 (docker daemon 실행중인 상태에서)
 docker compose up
 
-# 애플리케이션 실행
+# 다른 쉘에서 애플리케이션 실행
 ./gradlew bootRun
 ```
 
